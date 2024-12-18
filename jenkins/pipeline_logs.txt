@@ -1,0 +1,73 @@
+Started by user admin
+
+[Pipeline] Start of Pipeline
+[Pipeline] stage
+[Pipeline] { (Back-end)
+[Pipeline] node
+Running on Jenkins
+ in /var/jenkins_home/workspace/node-maven-declarative-pipeline
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker inspect -f . maven:3.9.9-eclipse-temurin-21-alpine
+.
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] withDockerContainer
+Jenkins seems to be running inside container 93a2e49d53b43faf6000c6202b3c320035bc625c6d0171bacd9c1ba520c986dd
+$ docker run -t -d -u 1000:1000 -w /var/jenkins_home/workspace/node-maven-declarative-pipeline --volumes-from 93a2e49d53b43faf6000c6202b3c320035bc625c6d0171bacd9c1ba520c986dd -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** maven:3.9.9-eclipse-temurin-21-alpine cat
+$ docker top b4830f580a7e6f8f6a5c895006b4bbb0de3922fb2f2e0b317c7064f2ef9d2ed5 -eo pid,comm
+[Pipeline] {
+[Pipeline] sh
++ mvn --version
+Apache Maven 3.9.9 (8e8579a9e76f7d015ee5ec7bfcdc97d260186937)
+Maven home: /usr/share/maven
+Java version: 21.0.5, vendor: Eclipse Adoptium, runtime: /opt/java/openjdk
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "6.8.0-49-generic", arch: "amd64", family: "unix"
+[Pipeline] echo
+Muhammad Dawood Semab
+[Pipeline] }
+$ docker stop --time=1 b4830f580a7e6f8f6a5c895006b4bbb0de3922fb2f2e0b317c7064f2ef9d2ed5
+$ docker rm -f --volumes b4830f580a7e6f8f6a5c895006b4bbb0de3922fb2f2e0b317c7064f2ef9d2ed5
+[Pipeline] // withDockerContainer
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Front-end)
+[Pipeline] node
+Running on Jenkins
+ in /var/jenkins_home/workspace/node-maven-declarative-pipeline
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker inspect -f . node:22.12.0-alpine3.21
+.
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] withDockerContainer
+Jenkins seems to be running inside container 93a2e49d53b43faf6000c6202b3c320035bc625c6d0171bacd9c1ba520c986dd
+$ docker run -t -d -u 1000:1000 -w /var/jenkins_home/workspace/node-maven-declarative-pipeline --volumes-from 93a2e49d53b43faf6000c6202b3c320035bc625c6d0171bacd9c1ba520c986dd -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** node:22.12.0-alpine3.21 cat
+$ docker top f6711a769d088826adf23e43c91e469d2ac4971b526674e5655727a25b55f5ee -eo pid,comm
+[Pipeline] {
+[Pipeline] sh
++ node --version
+v22.12.0
+[Pipeline] echo
+Muhammad Dawood Semab
+[Pipeline] }
+$ docker stop --time=1 f6711a769d088826adf23e43c91e469d2ac4971b526674e5655727a25b55f5ee
+$ docker rm -f --volumes f6711a769d088826adf23e43c91e469d2ac4971b526674e5655727a25b55f5ee
+[Pipeline] // withDockerContainer
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] End of Pipeline
+Finished: SUCCESS
